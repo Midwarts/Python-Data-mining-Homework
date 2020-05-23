@@ -8,6 +8,13 @@ down_name=[]
 def is_province():
     if place in data_dict['root'].values():
         print("您查找的是国家")
+        up_name.append('无上级地名')
+        for i in range(len(data_dict['root']['province'])):
+            down_name.append(data_dict['root']['province'][i]['name'])
+        print("上级地名为：")
+        print(up_name)
+        print("下级地名为：")
+        print(down_name)
     else:
         for i in range(len(data_dict['root']['province'])):
             if place in data_dict['root']['province'][i].values():
@@ -29,12 +36,10 @@ def is_province():
                     print(up_name)
                     print("下级地名为：")
                     print(down_name)
-
 def is_city():
     for i in range(len(data_dict['root']['province'])):
         if type(data_dict['root']['province'][i]['city']) == list:
             for j in range(len(data_dict['root']['province'][i]['city'])):
-                # print(type(data_dict['root']['province'][i]['city']))
                 if place in data_dict['root']['province'][i]['city'][j].values():
                     print("你查询的是市")
                     up_name.append(data_dict['root']['province'][i]['name'])
@@ -44,6 +49,7 @@ def is_city():
                     print(up_name)
                     print("下级地名为：")
                     print(down_name)
+
 def is_area():
     # if is_province()==False and is_city()==False:
         for i in range(len(data_dict['root']['province'])):
@@ -59,6 +65,16 @@ def is_area():
                                 print(up_name)
                                 print("下级地名为：")
                                 print(down_name)
+            if type(data_dict['root']['province'][i]['city']) ==dict:
+                for k in range(len(data_dict['root']['province'][i]['city']['area'])):
+                    if place in data_dict['root']['province'][i]['city']['area'][k].values():
+                        print('你查询的是区县')
+                        up_name.append(data_dict['root']['province'][i]['city']['name'])
+                        down_name.append("无下级地名")
+                        print("上级地名为：")
+                        print(up_name)
+                        print("下级地名为：")
+                        print(down_name)
 def main():
     is_province()
     is_city()
