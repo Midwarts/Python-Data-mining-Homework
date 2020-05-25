@@ -1,4 +1,4 @@
-# Python-Data-mining-HouseWork
+# Python-Data-mining-HomeWork
 Python数据挖掘教程作业
 
 > **作业提交格式要求**\
